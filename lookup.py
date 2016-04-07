@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""A took to find information about phone numbers."""
 import os
 import imp
 import sys
