@@ -24,9 +24,11 @@ def lookup(number):
                 msg = "%s (Not ready: %s)" % (msg, reason)
             print(msg)
         else:
-            result = provider.lookup(number)
-            if result is not None:
-                print("%s: %s" % (provider.getName(), result))
+            ready, reason = provider.isReady()
+            if ready:
+                result = provider.lookup(number)
+                if result is not None:
+                    print("%s: %s" % (provider.getName(), result))
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:

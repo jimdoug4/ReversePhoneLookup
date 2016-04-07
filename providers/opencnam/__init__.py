@@ -10,8 +10,6 @@ except ImportError:
 
 def lookup(number):
     """Look up a given number against the OpenCNAM API."""
-    if not ready:
-        return None
     res = requests.get("https://api.opencnam.com/v2/phone/%s" % number)
     cnam = res.content.decode()
     if cnam != "":
