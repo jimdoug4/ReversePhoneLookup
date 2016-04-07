@@ -17,7 +17,12 @@ def lookup(number):
         info = imp.find_module("__init__", [location])
         provider = imp.load_module("__init__", *info)
         if number is None:
-            print("  * %s" % provider.getName())
+            name = provider.getName()
+            ready, reason = provider.isReady()
+            msg = "* %s" % name
+            if not ready:
+                msg = "%s (Not ready: %s)" % (msg, reason)
+            print(msg)
         else:
             result = provider.lookup(number)
             if result is not None:

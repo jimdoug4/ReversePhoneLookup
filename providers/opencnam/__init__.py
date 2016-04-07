@@ -2,8 +2,10 @@
 try:
     import requests
     ready = True
+    ready_reason = None
 except ImportError:
     ready = False
+    ready_reason = "Requires the requests library"
 
 
 def lookup(number):
@@ -21,3 +23,8 @@ def lookup(number):
 def getName():
     """Return the name of this plugin."""
     return "OpenCNAM"
+
+
+def isReady():
+    """Return the status of the plugin."""
+    return ready, ready_reason

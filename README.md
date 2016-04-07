@@ -31,8 +31,6 @@ structure should be pretty self explanatory, both the OpenCNAM and UW Directory 
 
 # TODO:
  - [ ] Move these TODOs to GitHub issues
- - [ ] Allow a plugin to indicate if it's ready for use (eg if it's dependencies are installed).
- This may also come in handy when there is configuration needed for plugins.
  - [ ] Configuration. Some plugins may need configuration (such as private API keys), and I'd like
  to add a standard way of doing that
  - [ ] Proper argparse stuff for command line flags, possibly part of the configuration task.

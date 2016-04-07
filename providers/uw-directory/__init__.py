@@ -1,10 +1,16 @@
 """Search the UW Directory."""
 try:
     import ldap3
-    conn = ldap3.Connection('directory.washington.edu', auto_bind=True)
+    SERVER_ADDRESS = 'directory.washington.edu'
+    conn = ldap3.Connection(SERVER_ADDRESS, auto_bind=True)
     ready = True
+    ready_reason = None
 except ImportError:
     ready = False
+    ready_reason = "Requires the ldap3 library"
+except ldap3.core.exceptions.LDAPSocketOpenError:
+    ready = False
+    ready_reason = "Unable to connect to %s" % SERVER_ADDRESS
 
 BASE_DN = 'ou=People,o=University of Washington,c=US'
 
@@ -25,3 +31,8 @@ def lookup(number):
 def getName():
     """Return the name of this plugin."""
     return "UW Directory"
+
+
+def isReady():
+    """Return the status of the plugin."""
+    return ready, ready_reason
