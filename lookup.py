@@ -26,9 +26,9 @@ def lookup(number):
         if number is None:
             name = provider.getName()
             ready, reason = provider.isReady()
-            msg = "* %s" % name
-            if not ready:
-                msg = "%s (Not ready: %s)" % (msg, reason)
+            msg = "%s %s" % ("✓" if ready else "✘", name)
+            if reason is not None:
+                msg = "%s (%s)" % (msg, reason)
             print(msg)
         else:
             ready, reason = provider.isReady()
