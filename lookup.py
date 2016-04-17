@@ -3,19 +3,26 @@
 import os
 import imp
 import sys
+from configparser import ConfigParser
 
-PROVIDERS_FOLDER = "./providers"
+config = ConfigParser()
+config.read('settings.ini')
 
 
 def lookup(number):
     """Look up a phone number against all providers."""
-    providers = os.listdir(PROVIDERS_FOLDER)
-    for provider in providers:
-        location = os.path.join(PROVIDERS_FOLDER, provider)
+    providers_dir = "./providers"
+    if "providers" in config and "folder" in config['providers']:
+        providers_dir = config['providers']['folder']
+    providers = os.listdir(providers_dir)
+    for provider_name in providers:
+        location = os.path.join(providers_dir, provider_name)
         if not os.path.isdir(location) or "__init__.py" not in os.listdir(location):
             continue
         info = imp.find_module("__init__", [location])
         provider = imp.load_module("__init__", *info)
+        if provider_name in config:
+            provider.configure(config[provider_name])
         if number is None:
             name = provider.getName()
             ready, reason = provider.isReady()
