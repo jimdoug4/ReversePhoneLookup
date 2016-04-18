@@ -2,7 +2,7 @@
 try:
     import requests
     ready = False
-    ready_reason = "Not yet configured"
+    ready_reason = "Not configured"
 except ImportError:
     ready = False
     ready_reason = "Requires the requests library"
