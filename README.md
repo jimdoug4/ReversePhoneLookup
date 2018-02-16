@@ -20,7 +20,7 @@ terribly reliable, but free :)
 ## UW Directory
 Uses the University of Washington [Student, Faculty and Staff directory](https://www.washington.edu/home/peopledir/),
 which includes student cellphone numbers, to try to find a name and email associated with the
-number. The UW directory may have additional information, such as additional phone numbers, field of
+number. The UW directory may have additional information, such as additional [phone numbers](https://phonecalldetect.com), field of
 study for students or department for faculty/staff which is not displayed at this time, although I
 should add it one day.
 
